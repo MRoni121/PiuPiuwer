@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*faz com que o padding não altere o width*/
+}
+
+body{
+    background: #6FA5B8;
+}
+
+header{
+    display: flex;
+    background: rgba(255, 255, 255, 0.43);
+    height: 80px;
+    width: 100%;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+header div.logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Bitter'; /*incluir*/
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: #5E60CE;
+}
+
+header div.pesquisar input{
+    height: 25px;
+    background: rgba(255, 251, 251, 0.37);
+    outline: none;
+    border: none;
+    font-size: 20px;
+}
+
+header ul li{
+    display: flex;
+    height: 45px;
+    list-style: none;
+    width: 45px;
+
+}

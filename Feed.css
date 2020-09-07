@@ -28,18 +28,34 @@ header div.logo {
     color: #5E60CE;
 }
 
+header div.pesquisar{
+    background: rgba(255, 251, 251, 0.37);
+    display: flex;
+
+}
+
 header div.pesquisar input{
     height: 25px;
-    background: rgba(255, 251, 251, 0.37);
+    background: transparent;
     outline: none;
     border: none;
     font-size: 20px;
+    padding: 10px;
+    
 }
 
-header ul li{
+
+header div.side {
     display: flex;
-    height: 45px;
-    list-style: none;
-    width: 45px;
-
+    width: fit-content;
+    margin-right: 50px;
 }
+
+header div.side button{
+    margin-right: 50px;
+    color: transparent;
+}
+header div.side button img{
+    width: 45px;
+}
+

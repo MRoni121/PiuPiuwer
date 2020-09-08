@@ -3,30 +3,87 @@
     <head>
         <meta charset="utf-8">
         <title>PiuPiuwer</title>
-
+        <link href="https://fonts.googleapis.com/css2?family=Bitter&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="Feed.css">
     </head>
 
     <body>
         <header>
-            <div class="logo">
+            <div class="logo-topo">
                 <img src="./Imagens/Logo.svg" alt="Logo">PiuPiuwer
             </div>
 
             <div class="pesquisar">
                 <input type="text" placeholder="Pesquisar">
-                <img src="./Imagens/Lupa.svg" alt="lupa">
-            </div>
+                <button>
+                    <img src="./Imagens/Lupa.svg" alt="lupa">
+                </button>
+                </div>
 
             <div class="side">
                 <button>
                     <img src="./Imagens/notificacao.svg"/>    
                 </button>
-                <button>
-                    <img src="./Imagens/Foto de perfil.svg"/>
+                <button class="fotoPerfil">
+                    <img src="./Imagens/Foto.jpeg"/>
                 </button>
             </div>
-    
         </header>
+
+        <section class="content" >
+            <div class="retangulo1">
+                <h3>Faça um novo piu!</h3>
+                <img src="./Imagens/Logo.svg" alt="Logo" class="logo">
+            </div>
+            
+            <hr/>
+            
+            <div class="retangulo2">
+                <textarea name="text" rows="5" wrap="soft" placeholder="Digite aqui: "></textarea>
+                <div class="piar">
+                    <button>
+                        <p>Piar</p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="novosPius">
+                <!-- Corpo do novo piu:
+                <div piu completo>
+                    <div class="piu1">
+                        <div class="topoDoPiu">
+                            <div class="user">
+                                foto do usuario
+                                <div class="username">
+                                    <h3>Nome</h3>
+                                    <h4>nome de usuário</h4>
+                                </div>
+                            </div>
+                            foto da logo
+                        </div>
+
+                        <p>conteudo</p>
+                    </div>
+
+                    <div class="piu2">
+                        <div class="baseDoPiu">
+                            <button class = 'like'>
+                                imagem do coração 
+                            </button>
+                            <button class ='pin'>
+                                imagem do pino
+                            </button>
+                            <button class ='close'>
+                                imagem do x
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </section>
     </body>
+    <script src="Feed.js"></script>
 </html>
+
+

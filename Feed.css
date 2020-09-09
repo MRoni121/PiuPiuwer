@@ -167,8 +167,21 @@ hr {
 
 .piar{
     display: flex;
-    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.piar p{
+    align-self: flex-end;
+}
 
+.piar div{
+    display: flex;
+    align-items: center;
+}
+
+.textoPiu{
+    margin-left: 10%;
 }
 
 
@@ -235,5 +248,51 @@ hr {
 
 .novosPius {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+}
+
+.escondido{
+    display: none;
+}
+
+.amarelo {
+    color: yellow;
+}
+
+.laranja {
+    color: #cc8400;
+}
+
+.vermelho {
+    color: red;
+}
+
+.fundoVermelho {
+    background-color: red;
+}
+
+.semCor {
+    background-color: none;
+}
+
+.transparente {
+    color: transparent !important;
+}
+
+/*footer*/
+footer{
+    height: fit-content;
+    margin-top: 40px !important;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 40px;
+}
+
+footer ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    flex-wrap: wrap;
 }

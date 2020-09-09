@@ -181,7 +181,8 @@ hr {
 }
 
 .textoPiu{
-    margin-left: 10%;
+    margin-left: 5%;
+    font-weight: bold;
 }
 
 
@@ -243,7 +244,6 @@ hr {
 
 .baseDoPiu img{
     width: 25px;
-    margin-right: 30px;
 }
 
 .novosPius {
@@ -295,4 +295,18 @@ footer ul{
     justify-content: space-between;
     padding: 20px 50px;
     flex-wrap: wrap;
+}
+
+.fadeOut {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.like{
+    display: flex;
+    align-items: center;
+}
+
+.like div{
+    margin-right: 15px;
 }

@@ -1,72 +1,68 @@
 getData();
 
+
+/*sobre o novo piu*/
 var piar = document.querySelector('.piar');
 piar.addEventListener('click', publicar);
-
 var texto = document.querySelector('textarea');
 var caracteres = document.querySelector('.caracteres');
 caixaDoPiu = document.querySelector('.piar');
 caracteres.textContent = texto.value.length + '/140';
-
 textoAviso = document.querySelector('.textoPiu');
 texto.addEventListener('input', mudaCorTexto);
 
+var campoTextoPesquisa = document.querySelector('input');
+campoTextoPesquisa.addEventListener('input', pesquisar);
 
+function pesquisar(){
+    var pessoas = document.querySelectorAll('.piuCompleto');
+    for(var i = 0; i < pessoas.length; i++){
+        var nomeDoUsuario = pessoas[i].childNodes[0].firstElementChild.firstChild.lastElementChild.firstChild.textContent;
+        var arrobaDoUsuario = pessoas[i].childNodes[0].firstElementChild.firstChild.lastElementChild.lastElementChild.textContent;
+        
+        var expressao = new RegExp(this.value, 'i');
+        if(!(expressao.test(nomeDoUsuario) || expressao.test(arrobaDoUsuario))) {
+            pessoas[i].classList.add('escondido');
+        }
+        else{
+            pessoas[i].classList.remove('escondido');
+        }
+    
+    
+    }
+}
 
 /*muda a cor do texto*/
 function mudaCorTexto(){
     caracteres.textContent = texto.value.length + '/140';
-    if (texto.value.length <= 140){
-        if(textoAviso.classList.contains('transparente') == false){
-            textoAviso.classList.add('transparente');
-        }
+    if(texto.value.length == 0){
+        textoAviso.textContent = 'Você precisa escrever algo';
+        textoAviso.className = 'vermelho textoPiu';
+    }
+    else if (texto.value.length < 140){
+        textoAviso.className = 'transparente textoPiu';
     }
 
     if(texto.value.length <= 40){
-        if(caracteres.classList.contains('amarelo') == true){
-            caracteres.classList.remove('amarelo');
-        }
-        else if(caracteres.classList.contains('laranja') == true){
-            caracteres.classList.remove('laranja');
-        }
-        else if(caracteres.classList.contains('vermelho')){
-            caracteres.classList.remove('vermelho');
-        }
+        caracteres.className = '';
     }
 
     
     else if(texto.value.length <= 80){
-        caracteres.classList.add('amarelo');
-        if(caracteres.classList.contains('laranja') == true){
-            caracteres.classList.remove('laranja');
-        }
-        else if(caracteres.classList.contains('vermelho')){
-            caracteres.classList.remove('vermelho');
-        }
+        caracteres.className = 'amarelo';
     }
 
 
-    else if(texto.value.length <= 140){
-        caracteres.classList.add('laranja');
-        if(caracteres.classList.contains('amarelo') == true){
-            caracteres.classList.remove('amarelo');
-        }
-        else if(caracteres.classList.contains('vermelho')){
-            caracteres.classList.remove('vermelho');
-        }
+    else if(texto.value.length < 140){
+        caracteres.className = 'laranja';
     }
-
 
     else{
-        caracteres.classList.remove('laranja');
-        caracteres.classList.add('vermelho');
-        if(textoAviso.classList.contains('transparente')){
-            textoAviso.classList.remove('transparente');
-        }
-
-
+        caracteres.className = 'vermelho';
+        textoAviso.className = 'vermelho textoPiu';
+        textoAviso.textContent = 'Você atingiu o limite de caracteres';
     }
-     
+
 }
 
 /*publica um novo piu*/
@@ -75,7 +71,7 @@ function publicar(){
     var usuario = "@mateusroni";
     var fotoDePerfil = "./Imagens/Foto.jpeg";
 
-    if(texto.value.length > 0 && texto.value.length <=140){
+    if(texto.value.length > 0 && texto.value.length < 140){
         adicionaPiu(nome, usuario, fotoDePerfil, texto.value, 'antes');
         texto.value = '';
         caracteres.textContent = texto.value.length + '/140';
@@ -144,16 +140,35 @@ function adicionaPiu(nome, usuario, imagem, mensagem, posicao){
     likeImagem.src = "./Imagens/gostar.svg";
     likeImagem.classList.add('semCor');
 
-    var likeBotao = document.createElement('button');
-    likeBotao.classList.add('like')
-    likeBotao.appendChild(likeImagem);
+    var likeClicadoImagem = document.createElement('img');
+    likeClicadoImagem.src = './Imagens/gostarClicado.svg';
+    likeClicadoImagem.classList.add('escondido');
 
-    var pinImagem = document.createElement('img');
+    var numeroDeLikes = document.createElement('h4');
+    numeroDeLikes.style.marginLeft = '5px';
+    numeroDeLikes.textContent = '0';
+
+    var likeBotao = document.createElement('button');
+
+    likeBotao.classList.add('like');
+    divLike = document.createElement('div');
+    
+    divLike.appendChild(likeImagem);
+    divLike.appendChild(likeClicadoImagem);
+    divLike.appendChild(numeroDeLikes);
+    divLike.classList.add('like');
+
+    likeBotao.appendChild(divLike);
+
+
+
+
+    /*var pinImagem = document.createElement('img');
     pinImagem.src = "./Imagens/pin.svg";
 
     var pinBotao = document.createElement('button');
     pinBotao.classList.add('pin');
-    pinBotao.appendChild(pinImagem);
+    pinBotao.appendChild(pinImagem);*/
 
     var closeImagem = document.createElement('img');
     closeImagem.src = './Imagens/close.svg';
@@ -165,7 +180,7 @@ function adicionaPiu(nome, usuario, imagem, mensagem, posicao){
     var baseDoPiu = document.createElement('div');
     baseDoPiu.classList.add('baseDoPiu');
     baseDoPiu.appendChild(likeBotao);
-    baseDoPiu.appendChild(pinBotao);
+    //baseDoPiu.appendChild(pinBotao);
     baseDoPiu.appendChild(closeBotao);
 
     var piu2 = document.createElement('div');
@@ -176,7 +191,7 @@ function adicionaPiu(nome, usuario, imagem, mensagem, posicao){
     piuCompleto.appendChild(piu1);
     piuCompleto.appendChild(piu2);
 
-    var fixados = document.querySelector('.fixados');
+    /*var fixados = document.querySelector('.fixados');*/
 
     if(posicao == 'depois'){
         novosPius.appendChild(piuCompleto);
@@ -184,22 +199,26 @@ function adicionaPiu(nome, usuario, imagem, mensagem, posicao){
     else if (posicao == 'antes'){
         novosPius.prepend(piuCompleto);
     }
+    
+    piuCompleto.classList.add('piuCompleto');
 
     /*dá like*/
     likeBotao.addEventListener('click', function(){
-        if(likeImagem.classList.contains('semCor')){
-            likeImagem.classList.add('fundoVermelho');
-            likeImagem.classList.remove('semCor');
+        if(likeImagem.classList.contains('escondido')){
+            likeImagem.classList.remove('escondido');
+            likeClicadoImagem.classList.add('escondido');
+            numeroDeLikes.textContent = '0';
+        }
+        else{
+            likeClicadoImagem.classList.remove('escondido');
+            likeImagem.classList.add('escondido');
+            numeroDeLikes.textContent = '1';
         }
 
-        else{
-        likeImagem.classList.add('semCor');
-        likeImagem.classList.remove('fundoVermelho');
-        }
-    })
+    });
 
     /*fixa um piu, mas o piu desfixado não funciona mais*/
-    var novoPiuCompleto = piuCompleto.cloneNode(true);
+    /*var novoPiuCompleto = piuCompleto.cloneNode(true);
     pinBotao.addEventListener('click', function() {
         if(piuCompleto.parentNode.className == 'novosPius'){
             novosPius.insertBefore(novoPiuCompleto, piuCompleto);
@@ -213,12 +232,15 @@ function adicionaPiu(nome, usuario, imagem, mensagem, posicao){
             novoPiuCompleto.classList.remove('escondido');
         }
 
-    })
+    });*/
 
     /*remove*/
     closeBotao.addEventListener('click', function(){
-        this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode);
-    })
 
-
+        this.parentNode.parentNode.parentNode.classList.add("fadeOut");
+        var a = this;
+        setTimeout(function() {
+            a.parentNode.parentNode.parentNode.parentNode.removeChild(a.parentNode.parentNode.parentNode);
+        }, 500);
+    });
 }
